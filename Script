@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "PARSING"
+echo "Digite o endereço para buscar os domínios-host"
+read url
+
+# Baixa a página web
+wget -q $url -O index.html
+
+# Extrai os URLs da página HTML
+grep -Eo 'href="http[s]?://[^/"]+' index.html | cut -d "/" -f 3 | sort -u > lista
+
+# Exibe os domínios e hosts encontrados
+echo "Domínios e hosts encontrados:"
+cat lista
+
+# Busca os endereços IP dos domínios e hosts
+echo "Endereços IP dos domínios e hosts:"
+while read -r domain; do
+    host $domain | grep "has address"
+done < lista
+
+# Remove o arquivo temporário
+rm index.html lista
