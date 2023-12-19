@@ -34,8 +34,7 @@ Requisitos
 O script requer o comando wget para baixar a página web.
 Certifique-se de ter as permissões adequadas para executar o script (chmod +x parshing.sh).
 Exemplo de Saída
-less
-Copy code
+
 PARSING
 Digite o endereço para buscar os domínios-host
 https://example.com
